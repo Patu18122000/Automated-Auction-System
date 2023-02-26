@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import com.masai.exception.EmployeeException;
 import com.masai.model.Employee;
-import com.utility.JDBdao;
+import com.utility.DButil;
 
 public class EmployeeDaoInt implements EmployeeDao{
 
@@ -14,7 +14,7 @@ public class EmployeeDaoInt implements EmployeeDao{
 	public String registerEmployee(Employee emp) throws EmployeeException {
 		String response = "Not Registered";
 		
-		try(Connection conn = JDBdao.provideConnector()) {
+		try(Connection conn = DButil.provideConnection()) {
 			
 			PreparedStatement ps = conn.prepareStatement("insert into Employee(empId,ename,address,email,password,salary,depId) values(?,?,?,?,?)");
 			
